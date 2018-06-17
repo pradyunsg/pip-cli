@@ -22,6 +22,9 @@ else
     exit 1
   fi
 
+  echo "File contents:"
+  cat $tmp_file
+
   # Pass all the nox sessions to nox.
   OLD_IFS=$IFS
   IFS=$'\n'
