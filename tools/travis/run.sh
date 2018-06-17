@@ -1,37 +1,14 @@
 set -e
 
 if [[ ${SESSION} != "" ]]; then
-  nox -s ${SESSION}
-else
-  # Don't keep the 3.7"-dev" suffix
-  if [[ $TRAVIS_PYTHON_VERSION == "3.7-dev" ]]; then
-    TRAVIS_PYTHON_VERSION=3.7
+  if [[ ${TRAVIS_PYTHON_VERSION} == pypy* ]]; then
+      export SESSION="test_${TRAVIS_PYTHON_VERSION}"
+  else
+      # We use the syntax ${string:index:length} to make 2.7 -> py27
+      _major=${TRAVIS_PYTHON_VERSION:0:1}
+      _minor=${TRAVIS_PYTHON_VERSION:2:1}
+      export SESSION="test_py${_major}${_minor}"
   fi
-
-  tmp_file=/tmp/nox-cli.txt
-
-  # Dump all the shell commands to a file
-  nox -l | grep "python_version='${TRAVIS_PYTHON_VERSION}'" | cut -c 3- | while read line; do
-    echo "-s" >> $tmp_file
-    echo "${line}" >> $tmp_file
-  done
-
-  if [ ! -f $tmp_file ]; then
-    echo -n "Failed to find any sessions for ${TRAVIS_PYTHON_VERSION} in"
-    nox -l
-    exit 1
-  fi
-
-  echo "File contents:"
-  cat $tmp_file
-
-  # Pass all the nox sessions to nox.
-  OLD_IFS=$IFS
-  IFS=$'\n'
-  python -c "import sys; print(sys.argv)" $(cat $tmp_file)
-  nox $(cat $tmp_file)
-  IFS=$OLD_IFS
-
-  # Remove that temporary file
-  rm $tmp_file
 fi
+
+nox -s ${SESSION}
