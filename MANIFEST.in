@@ -1,0 +1,4 @@
+exclude nox.py
+
+prune tests
+prune tools

@@ -1,0 +1,25 @@
+language: python
+
+python: 3.6
+
+matrix:
+  include:
+    # Code Quality Checks
+    - env: KIND=check
+
+    # Test Suite
+    - python: pypy3
+    - python: pypy
+    - python: 2.7
+    - python: 3.6
+    - python: 3.5
+    - python: 3.4
+    - python: 3.7-dev
+
+  allow_failures:
+    - python: 3.7-dev
+
+install:
+  - pip install --upgrade nox-automation
+script:
+  - ./tool/travis/run.sh

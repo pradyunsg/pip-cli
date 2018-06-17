@@ -1,0 +1,7 @@
+# packaging
+check_manifest
+readme_renderer
+
+# linting
+flake8
+flake8-commas

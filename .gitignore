@@ -1,0 +1,30 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+build/
+dist/
+*.egg
+*.eggs
+*.egg-info/
+MANIFEST
+
+# Documentation
+docs/build/
+
+# Testing / Coverage
+.nox/
+coverage.xml
+.coverage
+.coverage.*
+*.cover
+
+# Misc
+.*cache
+*~
+.*.sw?
+
+# Scratch Pad for experiments
+.scratch/
