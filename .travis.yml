@@ -5,7 +5,7 @@ python: 3.6
 matrix:
   include:
     # Code Quality Checks
-    - env: KIND=check
+    - env: SESSION=check
 
     # Test Suite
     - python: pypy3
