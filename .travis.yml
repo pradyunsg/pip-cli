@@ -22,4 +22,4 @@ matrix:
 install:
   - pip install --upgrade nox-automation
 script:
-  - ./tool/travis/run.sh
+  - ./tools/travis/run.sh
