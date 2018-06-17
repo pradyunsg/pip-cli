@@ -28,6 +28,7 @@ else
   # Pass all the nox sessions to nox.
   OLD_IFS=$IFS
   IFS=$'\n'
+  python -c "import sys; print(sys.argv)" $(cat $tmp_file)
   nox $(cat $tmp_file)
   IFS=$OLD_IFS
 
