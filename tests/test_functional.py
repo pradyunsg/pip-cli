@@ -1,4 +1,4 @@
-"""Tests that ensure that this package is indeed functionally sound.
+"""Tests that ensure that the cli does invoke the correct pip.
 """
 
 import sys

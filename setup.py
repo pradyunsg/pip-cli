@@ -9,17 +9,13 @@ here = os.path.abspath(os.path.dirname(__file__))
 
 
 def read(*parts):
-    with io.open(os.path.join(here, *parts), encoding='utf-8') as fp:
+    with io.open(os.path.join(here, *parts), encoding="utf-8") as fp:
         return fp.read()
 
 
 def find_version(*file_paths):
     version_file = read(*file_paths)
-    version_match = re.search(
-        r"^__version__ = ['\"]([^'\"]*)['\"]",
-        version_file,
-        re.M,
-    )
+    version_match = re.search(r"^__version__ = ['\"]([^'\"]*)['\"]", version_file, re.M)
     if version_match:
         return version_match.group(1)
 
@@ -41,8 +37,7 @@ setup(
     license="MIT",
     url="https://github.com/pradyunsg/pip-cli",
     author="Pradyun Gedam",
-    author_email='pradyunsg@gmail.com',
-
+    author_email="pradyunsg@gmail.com",
     description="Command line wrappers for pip.",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -62,15 +57,13 @@ setup(
         "Programming Language :: Python :: Implementation :: CPython",
         "Programming Language :: Python :: Implementation :: PyPy",
     ],
-
     package_dir={"": "src"},
     py_modules=["_pip_cli"],
-
     entry_points={
         "console_scripts": [
             "{}={}".format(script, entry_point_name) for script in script_names
-        ],
+        ]
     },
-    python_requires='>=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*',
-    install_requires=["pip"]
+    python_requires=">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*",
+    install_requires=["pip"],
 )
